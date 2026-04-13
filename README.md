@@ -10,8 +10,10 @@ You can run the `trace` binary directly from your terminal. It is built static a
 
 #### Command Syntax
 ```bash
-./trace <input> [mode] [option] [method] [no-steps] [debug]
+./trace <input> [mode] [option] [method] [-p] [-c] [-no-steps] [-debug=[topics]]
 ```
+> [!NOTE]
+> Arguments can be provided in any order.
 
 #### Arguments
 - **input**: Path to the input circuit file (AAG/AIG format).
@@ -31,13 +33,18 @@ You can run the `trace` binary directly from your terminal. It is built static a
   - `-dfs`: Depth first search
   - `-bfs`: Breadth first search
   - `-dyn`: Dynamic priority based search
-  - `-out`: Output distance based search
-- **optimization**:
+  - `-ips`: Inductive priority search (simple)
+  - `-ipc`: Inductive priority search (complex)
+  - `-igsc`: Independent group search (with caching)
+  - `-ipsb`: Inductive priority search with local BFS
+  - `-ipsd`: Inductive priority search with local DFS
+- **optimizations**:
   - `-p`: Enable phase optimization
   - `-c`: Enable conflict detection
 - **misc**:
   - `-no-steps`: Suppress printing of progress steps
-  - `-debug=[topics]`: Enable specific debug topics (e.g., `all`, `conflict-calculation`, `phase`)
+  - `-debug=[topics]`: Enable specific debug topics (comma separated).
+    - **Topics**: `all`, `conflict-calculation`, `conflict-removal`, `cone-construction`, `cone-polynomial`, `replacement`, `phase`, `dynamic`
 
 #### Example
 ```bash
